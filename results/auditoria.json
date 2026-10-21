@@ -1,0 +1,61 @@
+{
+  "filas_originales": 17550,
+  "duplicados_exactos": 30,
+  "timestamps_invalidos_o_no_horarios": 0,
+  "faltantes_antes": {
+    "demanda_mw": 0,
+    "temperatura_c": 70,
+    "humedad_pct": 70,
+    "viento_kmh": 70,
+    "radiacion_wm2": 0,
+    "precipitacion_mm": 0,
+    "precio_kwh": 70,
+    "festivo": 0
+  },
+  "fisicamente_invalidos": {
+    "humedad_pct": 9,
+    "festivo": 0,
+    "demanda_mw": 0,
+    "viento_kmh": 8,
+    "radiacion_wm2": 0,
+    "precipitacion_mm": 0
+  },
+  "precios_negativos_conservados": 3,
+  "periodos_corregidos": 80,
+  "horas_ausentes_insertadas_sin_rellenar": 0,
+  "etiquetas_comparables": 17519,
+  "etiquetas_discrepantes_excluidas": 40,
+  "filas_horarias": 17520,
+  "inicio": "2025-01-01 00:00:00",
+  "fin": "2026-12-31 23:00:00",
+  "cortes_por_timestamp_objetivo": {
+    "inicio_validacion": "2026-05-27 00:00:00",
+    "inicio_prueba": "2026-09-13 12:00:00"
+  },
+  "muestras_comunes": {
+    "train": 5110,
+    "val": 1095,
+    "test": 1182
+  },
+  "candidatos_desde_hora_48": 17472,
+  "cobertura_pct": 42.279075091575095,
+  "filas_ajuste_scaler_X": 9255,
+  "max_fecha_ajuste_X": "2026-05-25 13:00:00",
+  "max_fecha_ajuste_y": "2026-05-25 14:00:00",
+  "dataset_sha256": "80d14b59ed2e16def4aa08bd6b130018830fc0ad1df609b22f874ea92c048f13",
+  "entorno": {
+    "python": "3.12.14",
+    "tensorflow": "2.20.0",
+    "keras": "3.15.1",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3"
+  },
+  "configuracion": {
+    "epochs_max": 40,
+    "patience": 7,
+    "batch_size": 128,
+    "seed": 42,
+    "learning_rate": 0.001,
+    "shuffle": false
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "pruebas_temporales": {
+    "ejecutadas": 7,
+    "aprobadas": 7
+  },
+  "app_streamlit": {
+    "carga": true,
+    "boton_prediccion": true,
+    "excepciones": 0,
+    "demanda_ejemplo_mw": 590.5285034179688,
+    "hora_objetivo_ejemplo": "2027-01-01 00:00:00"
+  },
+  "despliegue_publico": "Pendiente",
+  "inspeccion_pdf": "7 páginas renderizadas y revisadas"
+}

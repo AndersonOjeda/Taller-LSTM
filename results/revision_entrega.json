@@ -1,0 +1,10 @@
+{
+  "dataset_sha256": "80d14b59ed2e16def4aa08bd6b130018830fc0ad1df609b22f874ea92c048f13",
+  "experimentos_verificados": 9,
+  "metricas_recalculadas_desde_predicciones": true,
+  "pruebas_temporales_aprobadas": 7,
+  "seleccionado": "profunda_v48",
+  "app_verificada_en_esta_ejecucion": true,
+  "demanda_ejemplo_mw": 590.5285034179688,
+  "hora_objetivo": "2027-01-01 00:00:00"
+}
