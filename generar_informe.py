@@ -12,6 +12,9 @@ from reportlab.lib.pagesizes import A4
 R=Path(__file__).resolve().parent; O=R/'results'
 t=pd.read_csv(O/'resultados_modelos.csv'); a=json.loads((O/'auditoria.json').read_text()); c=json.loads((R/'models/config.json').read_text())
 best=t[t.Seleccionado].iloc[0]; tag=f'{best.Modelo}_v{int(best.Ventana)}'
+deployment_path=O/'despliegue.json'
+deployment=json.loads(deployment_path.read_text(encoding='utf-8')) if deployment_path.exists() else {}
+published=deployment.get('estado') == 'verificado'
 bas=pd.read_csv(O/'baselines.csv'); imp=pd.read_csv(O/'importancia_validacion.csv')
 styles=getSampleStyleSheet()
 styles.add(ParagraphStyle(name='TitleCustom',fontName='Helvetica-Bold',fontSize=25,leading=29,textColor=colors.HexColor('#132B46'),spaceAfter=18))
@@ -111,9 +114,12 @@ page();h('Aplicación web, verificación y entrega')
 sub('10. Aplicación implementada')
 p('La app Streamlit carga el modelo seleccionado y los parámetros de escalado del entrenamiento. Permite cargar un CSV o editar una tabla con 48 horas históricas consecutivas. Calcula las variables de calendario y devuelve la demanda prevista en MW y su timestamp. No reentrena ni ajusta el escalador con los datos ingresados.')
 p('Se incluyen un ejemplo real de entrada y controles para filas insuficientes, desorden, duplicados, huecos, valores no numéricos y límites físicos. Se verificó la carga del modelo guardado y la predicción mediante la aplicación. Los resultados y el notebook permiten revisar el experimento sin repetir entrenamiento.')
-sub('11. Qué está comprobado y qué falta')
-table([['Elemento','Estado'],['Nueve entrenamientos, métricas y gráficas','Completados con ejecución real.'],['Siete pruebas de preparación temporal','Aprobadas. Incluyen ausencia de fuga por cambios futuros.'],['Carga del modelo e interacción de predicción','Verificadas mediante prueba automatizada de Streamlit.'],['Despliegue en una URL pública','Pendiente: requiere publicar la app en una cuenta de alojamiento.']],[285,210])
-p('Para uso local: crear un entorno Python 3.12, instalar requirements.txt y ejecutar <b>python -m streamlit run app.py</b>. Para alojamiento público, subir los archivos de la app, el modelo y el ejemplo a un repositorio propio; después seleccionar repositorio, rama y app.py en Streamlit Community Cloud y desplegar. El README contiene los pasos exactos. Guardar la URL y una captura como evidencia final del requisito de despliegue.')
+sub('11. Estado de verificación')
+table([['Elemento','Estado'],['Nueve entrenamientos, métricas y gráficas','Completados; métricas recalculadas desde las predicciones guardadas.'],['Siete pruebas de preparación temporal','Aprobadas. Incluyen ausencia de fuga por cambios futuros.'],['Carga del modelo e interacción de predicción','Verificadas mediante prueba automatizada de Streamlit.'],['Despliegue en una URL pública','Verificado en Render con predicción desde navegador.' if published else 'Pendiente de verificación pública.']],[285,210])
+p('Para uso local: crear un entorno Python 3.12, instalar requirements.txt y ejecutar <b>python -m streamlit run app.py</b>. El repositorio contiene el modelo entrenado, su escalado y un ejemplo de entrada; no hace falta volver a entrenar para usar la aplicación.')
+if published:
+    link('Aplicación pública',deployment['url'])
+    link('Repositorio de la entrega','https://github.com/AndersonOjeda/Taller-LSTM')
 sub('12. Reproducibilidad')
 p('Entorno de ejecución: Python '+a['entorno']['python']+', TensorFlow '+a['entorno']['tensorflow']+', Keras '+a['entorno']['keras']+', NumPy '+a['entorno']['numpy']+' y pandas '+a['entorno']['pandas']+'. Se guardan configuración, semillas, historial, pesos de cada experimento, predicciones y hash del dataset. Puede existir variación numérica entre plataformas.','SmallCustom')
 p('SHA-256 del CSV usado: '+a['dataset_sha256'],'SmallCustom')
@@ -123,6 +129,13 @@ link('Repositorio de referencia','https://github.com/samumafu/Ia-Taller-ltsm')
 link('TensorFlow: LSTM','https://www.tensorflow.org/api_docs/python/tf/keras/layers/LSTM')
 link('TensorFlow: EarlyStopping','https://www.tensorflow.org/api_docs/python/tf/keras/callbacks/EarlyStopping')
 link('Streamlit: despliegue','https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app')
+
+if published and (O/'app_publica.png').exists():
+    page(); h('Evidencia del despliegue público')
+    link('Aplicación desplegada en Render',deployment['url'])
+    p('La captura muestra una predicción realizada mediante el navegador sobre la URL pública. El modelo y los parámetros de escalado son los mismos que se incluyen en la entrega.')
+    pic('app_publica.png',495)
+    p(f'Predicción del ejemplo: {deployment["demanda_ejemplo_mw"]:.2f} MW. Hora objetivo: {deployment["hora_objetivo"]}. Verificación: {deployment["fecha_verificacion"]}.','SmallCustom')
 
 def footer(canvas,doc):
     canvas.setStrokeColor(colors.HexColor('#D6E0E8'));canvas.line(50,40,545,40)

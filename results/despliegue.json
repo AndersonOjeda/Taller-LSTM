@@ -1,0 +1,15 @@
+{
+  "estado": "verificado",
+  "url": "https://taller-lstm-anderson.onrender.com",
+  "repositorio": "https://github.com/AndersonOjeda/Taller-LSTM",
+  "servicio_render": "srv-dbce7oafngtc739uec7g",
+  "deploy_id": "dep-dbce7oifngtc739ued80",
+  "commit_app": "15577ce7eb5c4ee1cd01c97da79c0d7bb0d71a60",
+  "plan": "free",
+  "fecha_verificacion": "21/10/2026, America/Bogota",
+  "health_http": 200,
+  "prediccion_desde_navegador": true,
+  "demanda_ejemplo_mw": 590.53,
+  "hora_objetivo": "2027-01-01 00:00:00",
+  "captura": "results/app_publica.png"
+}

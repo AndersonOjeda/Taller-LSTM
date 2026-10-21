@@ -16,7 +16,7 @@ métricas a partir de las predicciones, sin atribuirlos a un nuevo entrenamiento
 | Sobreajuste, generalización y nueve respuestas | `Informe_Taller_LSTM_Anderson.pdf` |
 | Ingreso de X y visualización de y | `app.py`, `data/ejemplo_entrada.csv` |
 | Comprobación reproducible de artefactos e interfaz | `verificar_entrega.py --app` |
-| Publicación web | En preparación con Render; registrar la URL verificada al finalizar |
+| Publicación web | https://taller-lstm-anderson.onrender.com; predicción pública y captura verificadas |
 
 La ventana del modelo seleccionado es de 48 horas. Esas filas deben ser
 consecutivas; la salida corresponde a la hora inmediatamente posterior.

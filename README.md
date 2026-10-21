@@ -78,19 +78,25 @@ Para revisar por etapas, abre `Taller_LSTM_Anderson.ipynb` en Jupyter o VS Code 
 9. Selección fijada por menor RMSE de validación antes de consultar prueba. Todos los modelos se evalúan una vez en prueba para cumplir la tabla comparativa; no se cambia el ganador por esos resultados.
 10. MAE, MSE, RMSE, MAPE (%) y R² se calculan al volver a MW. MAPE excluye objetivos cero; `n` informa el tamaño evaluado. Se comparan persistencia de 1 hora y referencia estacional de 24 horas.
 
-## Despliegue público (paso pendiente)
+## Aplicación pública
 
-La app está implementada y comprobada localmente. Este paquete no proporciona una URL pública desplegada.
+**Abrir:** https://taller-lstm-anderson.onrender.com
 
-Para publicar en Streamlit Community Cloud:
+Repositorio de esta entrega: https://github.com/AndersonOjeda/Taller-LSTM
 
-1. Crea un repositorio tuyo y sube `app.py`, `pipeline.py`, `requirements.txt`, `models/mejor_modelo.keras`, `models/config.json`, `data/ejemplo_entrada.csv` y opcionalmente `results/resultados_modelos.csv`.
-2. En https://share.streamlit.io/ conecta tu GitHub y elige **Create app**.
-3. Selecciona tu repositorio, la rama y `app.py`. En la configuración avanzada selecciona Python 3.12, si está disponible.
-4. Pulsa **Deploy**. Comprueba carga del ejemplo, predicción, carga de CSV e ingreso inválido. Conserva el enlace y una captura para la entrega del taller.
+Desplegada en Render, espacio AnderOz, plan gratuito, Python 3.12.15.
+Se verificaron el estado `live`, la respuesta HTTP 200 del endpoint de salud y
+una predicción desde el navegador: **590,53 MW** para el **01/01/2027 00:00**
+con el ejemplo incluido. Evidencias: `results/despliegue.json` y
+`results/app_publica.png`.
 
-No publiques claves ni archivos de entorno. La app no necesita credenciales para inferir.
-Documentación oficial: https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app
+Para probarla, abre el enlace, conserva **Editar ejemplo** y pulsa
+**Predecir siguiente hora**. También puedes cargar tu propio CSV de 48 horas
+consecutivas o descargar y editar el ejemplo. El plan gratuito puede suspender
+la instancia cuando está inactiva; la primera apertura puede tardar en cargar.
+
+Configuración: construcción `pip install -r requirements-app.txt`, inicio
+`python render_start.py`. No necesita credenciales para inferir ni una base de datos.
 
 ## Alcance y honestidad de los resultados
 

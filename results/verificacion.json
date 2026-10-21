@@ -10,6 +10,7 @@
     "demanda_ejemplo_mw": 590.5285034179688,
     "hora_objetivo_ejemplo": "2027-01-01 00:00:00"
   },
-  "despliegue_publico": "Pendiente",
-  "inspeccion_pdf": "7 páginas renderizadas y revisadas"
+  "despliegue_publico": "https://taller-lstm-anderson.onrender.com",
+  "inspeccion_pdf": "8 paginas renderizadas y revisadas; evidencia publica incluida",
+  "evidencia_publica": "results/despliegue.json"
 }
